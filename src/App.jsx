@@ -1,16 +1,14 @@
+import abelPhoto from "./assets/abel.jpg";
+
 // ─────────────────────────────────────────────
 // EDIT THESE
 // ─────────────────────────────────────────────
-// When you have Bro Abel's picture: put it in /public (e.g. /public/abel.jpg)
-// and set PHOTO to "/abel.jpg". While it's empty, a framed gap shows instead.
-import abelPhoto from "./assets/abel.jpg";
-
+// Photo lives in src/assets/abel.jpg (imported above).
+// Set PHOTO to "" to show the empty frame instead.
 const PHOTO = abelPhoto;
+
 const FROM = "Favour";
 const DATE = "11 November 2026";
-
-
-
 
 // The letter, in your own words. Each string is one paragraph.
 const LETTER = [
@@ -41,53 +39,49 @@ const display = {
   lineHeight: 1.04,
 };
 
+// The picture fills the whole arch edge to edge. No border, no padding.
 function PhotoFrame() {
   return (
     <div
       style={{
         width: "100%",
-        maxWidth: 400,
+        maxWidth: 420,
         aspectRatio: "4 / 5",
-        borderRadius: "999px 999px 14px 14px",
-        border: "2px solid var(--brass)",
-        padding: 10,
+        borderRadius: "999px 999px 16px 16px",
+        background: "var(--petrol-deep)",
+        overflow: "hidden",
         justifySelf: "center",
+        display: "grid",
+        placeItems: "center",
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: "999px 999px 6px 6px",
-          background: "var(--petrol-deep)",
-          overflow: "hidden",
-          display: "grid",
-          placeItems: "center",
-          textAlign: "center",
-          padding: 24,
-        }}
-      >
-        {PHOTO ? (
-          <img
-            src={PHOTO}
-            alt="Bro Abel Awe"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        ) : (
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              color: "var(--lichen)",
-              fontSize: 20,
-              lineHeight: 1.4,
-              maxWidth: 200,
-            }}
-          >
-            Bro Abel's picture goes here
-          </p>
-        )}
-      </div>
+      {PHOTO ? (
+        <img
+          src={PHOTO}
+          alt="Bro Abel Awe"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "50% 25%",
+            display: "block",
+          }}
+        />
+      ) : (
+        <p
+          style={{
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
+            color: "var(--lichen)",
+            fontSize: 20,
+            lineHeight: 1.4,
+            maxWidth: 200,
+            textAlign: "center",
+          }}
+        >
+          Bro Abel's picture goes here
+        </p>
+      )}
     </div>
   );
 }
@@ -100,23 +94,15 @@ function Hero() {
         padding: "clamp(48px, 10vw, 110px) 0 clamp(56px, 10vw, 120px)",
       }}
     >
-      <div
-        style={{
-          ...wrap,
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-          gap: "clamp(36px, 6vw, 80px)",
-          alignItems: "center",
-        }}
-      >
-        <div className="settle">
+      <div className="hero-grid" style={{ ...wrap, maxWidth: 1200 }}>
+        <div className="hero-text settle">
           <p style={{ color: "var(--lichen)", fontSize: 17, marginBottom: 28 }}>
             Convocation day, {DATE}
           </p>
           <h1
+            className="hero-title"
             style={{
               ...display,
-              fontSize: "clamp(46px, 9vw, 104px)",
               color: "var(--mist)",
             }}
           >
@@ -248,7 +234,7 @@ function Closing() {
         <h2
           style={{
             ...display,
-            fontSize: "clamp(38px, 7vw, 80px)",
+            fontSize: "clamp(34px, 6.4vw, 72px)",
             color: "var(--mist)",
             maxWidth: 820,
           }}
