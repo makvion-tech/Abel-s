@@ -3,10 +3,14 @@
 // ─────────────────────────────────────────────
 // When you have Bro Abel's picture: put it in /public (e.g. /public/abel.jpg)
 // and set PHOTO to "/abel.jpg". While it's empty, a framed gap shows instead.
-const PHOTO = "";
+import abelPhoto from "./assets/abel.jpg";
 
+const PHOTO = abelPhoto;
 const FROM = "Favour";
 const DATE = "11 November 2026";
+
+
+
 
 // The letter, in your own words. Each string is one paragraph.
 const LETTER = [
