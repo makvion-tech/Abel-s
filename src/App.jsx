@@ -1,12 +1,26 @@
 // ─────────────────────────────────────────────
 // EDIT THESE
 // ─────────────────────────────────────────────
-// When you have Abel's picture: put it in /public (e.g. /public/abel.jpg)
+// When you have Bro Abel's picture: put it in /public (e.g. /public/abel.jpg)
 // and set PHOTO to "/abel.jpg". While it's empty, a framed gap shows instead.
 const PHOTO = "";
 
 const FROM = "Favour";
 const DATE = "11 November 2026";
+
+// The letter, in your own words. Each string is one paragraph.
+const LETTER = [
+  "When I first came to the University of Ibadan, everything was new to me. I was still finding my feet, getting used to a new environment and trying to settle into the congregation. At Abadina Congregation, you were the third person I met, but you were the first person who made me feel genuinely welcomed through your kindness.",
+  "What stood out to me was how naturally kind you were. You were cool, calm and approachable. You didn’t have to do anything extraordinary or make a big show of welcoming me; your simple gestures and the way you related with me made a lasting impression.",
+  "Over time, I came to appreciate you even more, not just for your kindness but also for the kind of person you are. Your humility, calmness and the way you carry yourself are things I have come to admire.",
+  "When you left for Lagos because of work, it wasn’t the same at Abadina Congregation. Your absence was felt, and honestly, we still miss having you around.",
+  "I also want you to know that the talk you gave at Abadina Congregation remains one of the best talks I have ever listened to. It was one of those talks that stays with you long after it has been given. I still remember how much it meant to me, and I genuinely appreciate the effort and thought you put into it.",
+];
+
+const CLOSING = [
+  "And congratulations on your convocation! It’s wonderful to see you reach this milestone. I pray that Jehovah continues to bless your efforts, guide your steps and help you achieve even greater things in the years ahead.",
+  "Sometimes, people come into our lives without even realising the impact they make. You are one of those people for me. I’m grateful that I got to meet you, and I hope you know that your kindness and the memories you’ve left behind are truly appreciated.",
+];
 // ─────────────────────────────────────────────
 
 const wrap = {
@@ -52,7 +66,7 @@ function PhotoFrame() {
         {PHOTO ? (
           <img
             src={PHOTO}
-            alt="Abel Awe"
+            alt="Bro Abel Awe"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         ) : (
@@ -66,7 +80,7 @@ function PhotoFrame() {
               maxWidth: 200,
             }}
           >
-            Abel's picture goes here
+            Bro Abel's picture goes here
           </p>
         )}
       </div>
@@ -102,7 +116,7 @@ function Hero() {
               color: "var(--mist)",
             }}
           >
-            Congratulations, Abel&nbsp;Awe.
+            Congratulations, Bro&nbsp;Abel.
           </h1>
           <p
             style={{
@@ -113,7 +127,8 @@ function Hero() {
               opacity: 0.88,
             }}
           >
-            You graduated today. This little page is how I'm saying thank you.
+            Abel Awe, you graduate from the University of Ibadan today. This
+            little page is how I'm saying thank you.
           </p>
         </div>
 
@@ -129,10 +144,10 @@ function Letter() {
   const para = {
     fontFamily: "var(--font-display)",
     fontWeight: 300,
-    fontSize: "clamp(21px, 2.6vw, 27px)",
-    lineHeight: 1.6,
+    fontSize: "clamp(19px, 2.2vw, 23px)",
+    lineHeight: 1.7,
     color: "var(--ink)",
-    maxWidth: 640,
+    maxWidth: 660,
   };
 
   return (
@@ -142,31 +157,24 @@ function Letter() {
         padding: "clamp(64px, 10vw, 120px) 0",
       }}
     >
-      <div style={{ ...wrap, display: "grid", gap: "clamp(28px, 4vw, 44px)" }}>
+      <div style={{ ...wrap, display: "grid", gap: "clamp(24px, 3.5vw, 36px)" }}>
         <h2
           style={{
             ...display,
             fontSize: "clamp(32px, 5vw, 54px)",
             color: "var(--petrol)",
             maxWidth: 620,
+            marginBottom: 8,
           }}
         >
-          The first kind face I met in Ibadan.
+          The first person who made me feel welcome.
         </h2>
 
-        <p style={para}>
-          When I came to the University of Ibadan, everything was new to me. At
-          Abadina congregation, you were the first person I met, and the first
-          person who was kind to me.
-        </p>
-        <p style={para}>
-          You were cool. You were calm. You were welcoming without making a
-          show of it, and I have not forgotten that.
-        </p>
-        <p style={para}>
-          After a while, you left Ibadan for Lagos. We have missed you at
-          Abadina congregation ever since.
-        </p>
+        {LETTER.map((text, i) => (
+          <p key={i} style={para}>
+            {text}
+          </p>
+        ))}
       </div>
     </section>
   );
@@ -175,8 +183,8 @@ function Letter() {
 function Journey() {
   const stops = [
     { place: "Ibadan", note: "Where I arrived, and where we met." },
-    { place: "Abadina congregation", note: "Where you were kind to me first." },
-    { place: "Lagos", note: "Where you are now, graduating." },
+    { place: "Abadina congregation", note: "Where you were the first to welcome me." },
+    { place: "Lagos", note: "Where you went to work, before coming back to graduate." },
   ];
 
   return (
@@ -241,21 +249,33 @@ function Closing() {
             maxWidth: 820,
           }}
         >
-          Thank you for being kind to me, Abel.
+          Thank you for being kind to me, Bro Abel.
         </h2>
 
-        <p
+        <div
           style={{
-            marginTop: 36,
-            maxWidth: 560,
-            fontSize: 21,
-            color: "var(--mist)",
-            opacity: 0.88,
+            marginTop: 40,
+            maxWidth: 620,
+            display: "grid",
+            gap: 24,
           }}
         >
-          Congratulations on your convocation. We are proud of you, and we
-          miss you at Abadina congregation.
-        </p>
+          {CLOSING.map((text, i) => (
+            <p
+              key={i}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 300,
+                fontSize: "clamp(19px, 2.2vw, 23px)",
+                lineHeight: 1.7,
+                color: "var(--mist)",
+                opacity: 0.92,
+              }}
+            >
+              {text}
+            </p>
+          ))}
+        </div>
 
         <p
           style={{
